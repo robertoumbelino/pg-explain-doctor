@@ -1,0 +1,5 @@
+{
+  "name": "PG Explain Doctor",
+  "description": "Uma ferramenta moderna e minimalista para analisar o output do PostgreSQL EXPLAIN usando IA. Fornece insights, identifica gargalos e sugere melhorias de índice.",
+  "requestFramePermissions": []
+}
