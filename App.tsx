@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ExplainInput } from "./components/ExplainInput";
 import { ResultSection } from "./components/ResultSection";
 import { analyzeExplainPlan } from "./services/geminiService";
@@ -8,12 +8,6 @@ const App: React.FC = () => {
   const [analysis, setAnalysis] = useState<ExplainAnalysis | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    // Force dark mode
-    const root = window.document.documentElement;
-    root.classList.add("dark");
-  }, []);
 
   const handleAnalyze = async (text: string) => {
     setIsLoading(true);
@@ -31,8 +25,8 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col font-sans selection:bg-primary/30 selection:text-primary-foreground bg-dot-pattern">
-      <main className="flex-1 container mx-auto max-w-6xl px-4 py-8 md:py-16 flex flex-col items-center gap-12">
+    <div className="flex-1 flex flex-col">
+      <main className="flex-1 container mx-auto max-w-5xl px-4 py-12 md:py-20 flex flex-col items-center gap-12">
         {/* Intro / Input Section */}
         <section className="w-full">
            <ExplainInput onAnalyze={handleAnalyze} isLoading={isLoading} />
@@ -40,7 +34,7 @@ const App: React.FC = () => {
 
         {/* Error Message */}
         {error && (
-          <div className="w-full max-w-4xl mx-auto p-4 rounded-xl bg-destructive/10 border border-destructive/20 text-destructive text-sm flex items-center justify-center animate-in fade-in slide-in-from-top-2">
+          <div className="w-full max-w-4xl mx-auto p-4 rounded-xl bg-red-50 border border-red-100 text-red-600 text-sm flex items-center justify-center animate-in fade-in slide-in-from-top-2">
             <span className="font-medium mr-2">Erro:</span> {error}
           </div>
         )}
@@ -53,8 +47,8 @@ const App: React.FC = () => {
         )}
       </main>
 
-      <footer className="py-8 text-center text-sm text-muted-foreground">
-        <p>© {new Date().getFullYear()} PG Explain Doctor • Construído com Gemini 2.5 Flash</p>
+      <footer className="py-8 text-center text-xs text-muted-foreground/60">
+        <p>© {new Date().getFullYear()} PG Explain Doctor • Powered by Gemini 2.5</p>
       </footer>
     </div>
   );
